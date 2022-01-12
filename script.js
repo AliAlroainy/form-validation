@@ -56,6 +56,47 @@
        
         areaValidation();
     }
+
+    // url vailidtion 
+
+    var url = document.getElementById("url");
+    
+    var urlValidation=function(){
+    
+       urlValue=url.value.trim();
+
+     var validURL = function (str) {
+        var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
+          '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
+          '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
+          '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
+          '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
+          '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
+        return !!pattern.test(str);
+      } 
+       
+
+       urlErr=document.getElementById('url-err');
+
+       if(urlValue=="" )
+       {
+        urlErr.innerHTML=" url is required";
+
+       }else if ( !validURL ){
+        urlErr.innerHTML=" url is not correct";
+       }
+       
+       else{
+         urlErr.innerHTML="";
+         return true;
+        
+       }
+    }
+    
+    url.oninput=function(){
+       
+        urlValidation();
+    }
      
      // Email Address Validation
      var emailAddress= document.getElementById("emailAddress");;
@@ -206,6 +247,7 @@
       firstNameValidation();
       areaValidation();
       ageValidation();
+      urlValidation();
       emailAddressValidation();
       mobileNumberValidation();
       passwordValidation();
@@ -213,6 +255,7 @@
     
       if(firstNameValidation()==true && 
       areaValidation()==true &&
+      urlValidation()==true &&
       ageValidation()==true &&
         lastNameValidation()==true && 
         emailAddressValidation() == true && 
